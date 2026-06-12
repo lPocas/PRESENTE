@@ -13,6 +13,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: #faf7f2;
@@ -37,21 +41,23 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .hero {
             max-width: 900px;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             color: #6e4d31;
             margin-bottom: 10px;
             transition: opacity 0.4s ease, transform 0.4s ease;
             display: inline-block;
             width: 100%;
+            word-wrap: break-word;
         }
 
         .hero h1.trocando {
@@ -62,20 +68,35 @@
         .hero h2 {
             font-weight: 300;
             opacity: 0.9;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            margin: 10px 0;
+            padding: 0 10px;
         }
 
         .btn {
             background: #8b6b4f;
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: clamp(12px, 3vw, 15px) clamp(25px, 5vw, 40px);
             border-radius: 40px;
             cursor: pointer;
             margin-top: 20px;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             font-family: 'Poppins', sans-serif;
             box-shadow: 0 4px 15px rgba(139, 107, 79, 0.3);
             transition: all 0.3s ease;
+            display: inline-block;
+            max-width: 95%;
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 107, 79, 0.5);
         }
 
         .btn:hover {
@@ -87,13 +108,17 @@
             background: transparent;
             color: #8b6b4f;
             border: 1px dashed #8b6b4f;
-            padding: 6px 16px;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             margin-bottom: 20px;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-revelar:active {
+            background: rgba(139, 107, 79, 0.1);
         }
 
         .btn-revelar:hover {
@@ -101,17 +126,17 @@
         }
 
         #site {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
 
         .fade-section {
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
-            margin-bottom: 80px;
-            padding: 20px 0;
+            margin-bottom: 40px;
+            padding: 0;
         }
 
         .fade-section.visible {
@@ -122,19 +147,21 @@
         .card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
-            padding: 40px;
-            border-radius: 30px;
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: clamp(15px, 4vw, 30px);
             box-shadow: 0 15px 35px rgba(0,0,0,.05);
             border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         h2 {
             color: #6e4d31;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         img {
@@ -142,37 +169,46 @@
             max-width: 340px;
             display: block;
             margin: 20px auto;
-            border-radius: 25px;
+            border-radius: clamp(15px, 3vw, 25px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .timeline {
             border-left: 3px dashed #d6c0a5;
-            padding-left: 25px;
+            padding-left: clamp(15px, 4vw, 25px);
             margin: 20px 0;
         }
 
         .msg-timestamp {
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             color: #8b6b4f;
             font-weight: 600;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
 
         .texto-principal {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             color: #5c4a38;
-            line-height: 1.9;
+            line-height: 1.8;
             text-align: justify;
+            word-wrap: break-word;
+        }
+
+        .card p {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: #5c4a38;
+            line-height: 1.8;
+            margin: 10px 0;
+            word-wrap: break-word;
         }
 
         /* Estilo dos Versículos Bíblicos */
         .versiculo-box {
             border-left: 4px solid #8b6b4f;
             background: rgba(139, 107, 79, 0.05);
-            padding: 20px;
+            padding: clamp(15px, 4vw, 20px);
             border-radius: 0 20px 20px 0;
             margin: 20px 0;
         }
@@ -180,33 +216,41 @@
         .versiculo-texto {
             font-style: italic;
             color: #6e4d31;
-            font-size: 1.05rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+            line-height: 1.7;
+            word-wrap: break-word;
         }
 
         .versiculo-ref {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             color: #8b6b4f;
             display: block;
-            margin-top: 5px;
+            margin-top: 8px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px dashed #d6c0a5;
         }
 
         footer {
             text-align: center;
-            padding: 120px 20px;
+            padding: clamp(40px, 8vw, 120px) 20px;
         }
 
         #topo {
             position: fixed;
-            right: 25px;
-            bottom: 25px;
-            width: 50px;
-            height: 50px;
+            right: clamp(15px, 3vw, 25px);
+            bottom: clamp(15px, 3vw, 25px);
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
             border: none;
             border-radius: 50%;
             background: #8b6b4f;
             color: white;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             cursor: pointer;
             display: none;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -214,15 +258,186 @@
             z-index: 100;
         }
 
+        #topo:active {
+            background: #6e4d31;
+            transform: translateY(-2px);
+        }
+
         #topo:hover {
             background: #6e4d31;
             transform: translateY(-3px);
         }
 
-        @media(max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .card { padding: 25px; }
-            .fade-section { margin-bottom: 50px; }
+        /* Responsividade para tablets */
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px;
+            }
+
+            .card {
+                margin: 0;
+            }
+
+            #site {
+                padding: 15px;
+            }
+        }
+
+        /* Responsividade para celulares pequenos */
+        @media (max-width: 768px) {
+            header {
+                min-height: 90vh;
+                padding: 15px;
+            }
+
+            .hero h1 {
+                margin-bottom: 8px;
+            }
+
+            .hero h2 {
+                margin-bottom: 12px;
+            }
+
+            .btn {
+                margin-top: 15px;
+            }
+
+            .card {
+                border-radius: 15px;
+                box-shadow: 0 10px 25px rgba(0,0,0,.08);
+            }
+
+            h2 {
+                justify-content: flex-start;
+                margin-bottom: 12px;
+            }
+
+            .fade-section {
+                margin-bottom: 30px;
+            }
+
+            .timeline {
+                padding-left: 15px;
+            }
+
+            .versiculo-box {
+                border-radius: 0 15px 15px 0;
+            }
+
+            footer {
+                padding: 30px 15px;
+            }
+        }
+
+        /* Responsividade para celulares muito pequenos */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            header {
+                min-height: 85vh;
+                padding: 10px;
+            }
+
+            .hero h1 {
+                margin-bottom: 6px;
+            }
+
+            .hero h2 {
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                font-size: clamp(0.85rem, 3vw, 0.95rem);
+                padding: 0 5px;
+            }
+
+            .btn {
+                margin-top: 12px;
+                padding: 10px 20px;
+            }
+
+            .card {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            h2 {
+                font-size: clamp(1.2rem, 5vw, 1.5rem);
+                gap: 5px;
+            }
+
+            img {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+
+            .fade-section {
+                margin-bottom: 20px;
+            }
+
+            .msg-timestamp {
+                font-size: 0.7rem;
+                margin-bottom: 8px;
+            }
+
+            .texto-principal {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+                text-align: left;
+            }
+
+            .card p {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+            }
+
+            .timeline {
+                padding-left: 12px;
+                border-left-width: 2px;
+            }
+
+            .versiculo-box {
+                padding: 12px;
+                border-left-width: 3px;
+                border-radius: 0 12px 12px 0;
+            }
+
+            .versiculo-texto {
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
+            }
+
+            .versiculo-ref {
+                font-size: clamp(0.75rem, 2vw, 0.85rem);
+            }
+
+            footer {
+                padding: 20px 10px;
+            }
+
+            #topo {
+                right: 10px;
+                bottom: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .btn-revelar {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+        }
+
+        /* Orientação landscape em celulares pequenos */
+        @media (max-height: 600px) {
+            header {
+                min-height: auto;
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 10px 0;
+            }
         }
     </style>
 </head>
@@ -251,7 +466,7 @@
                 <img src="Lucas.jpg" alt="Lucas">
                 <p><strong>Nome:</strong> Lucas Vinicius</p>
                 <p>Sou um jovem que busca crescer através da fé, dos estudos e dos sonhos que Deus colocou em meu coração.</p>
-                <hr style="margin: 25px 0; border: 0; border-top: 1px dashed #d6c0a5;">
+                <hr>
                 <h2>🙏 Minha Fé</h2>
                 <p>Minha fé é a base de tudo. Ela me lembra diariamente que Deus tem um propósito desenhado para cada etapa da nossa caminhada e cuida de cada detalhe.</p>
             </div>
@@ -357,8 +572,8 @@
                 Cada detalhe que passamos até aqui, desde o nervosismo daquele congresso até as conversas mais profundas, me mostra que vale a pena sonhar. Que Deus continue guiando os nossos passos, abençoando nossos dias e escrevendo cada capítulo dessa história que está apenas começando. Obrigado por ser essa pessoa tão especial.
             </p>
             <div class="versiculo-box" style="border: none; background: rgba(110, 77, 49, 0.1); border-radius: 20px; padding: 25px;">
-                <p style="font-size: 1.2rem; font-style: italic; color: #6e4d31;">"Agora permanecem a fé, a esperança e o amor. Mas o maior destes é o amor."</p>
-                <p style="font-weight: 600; margin-top: 5px;">1 Coríntios 13:13</p>
+                <p style="font-size: clamp(1rem, 3vw, 1.2rem); font-style: italic; color: #6e4d31;">"Agora permanecem a fé, a esperança e o amor. Mas o maior destes é o amor."</p>
+                <p style="font-weight: 600; margin-top: 5px; font-size: clamp(0.9rem, 2.5vw, 1rem);">1 Coríntios 13:13</p>
             </div>
         </footer>
     </div>
@@ -413,6 +628,24 @@
         };
 
         window.addEventListener('scroll', checarScroll);
+        window.addEventListener('resize', () => {
+            checarScroll();
+        });
+
+        // Mostrar/esconder botão de topo
+        window.addEventListener('scroll', () => {
+            const topoBtn = document.getElementById('topo');
+            if (window.scrollY > 300) {
+                topoBtn.style.display = 'block';
+            } else {
+                topoBtn.style.display = 'none';
+            }
+        });
+
+        // Inicializar ao carregar
+        window.addEventListener('load', () => {
+            checarScroll();
+        });
     </script>
 </body>
 </html>
