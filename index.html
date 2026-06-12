@@ -45,7 +45,6 @@
             max-width: 900px;
         }
 
-        /* Animação do Nome */
         .hero h1 {
             font-size: 4rem;
             color: #6e4d31;
@@ -84,7 +83,6 @@
             box-shadow: 0 6px 20px rgba(139, 107, 79, 0.5);
         }
 
-        /* Botão sutil para revelar o nome */
         .btn-revelar {
             background: transparent;
             color: #8b6b4f;
@@ -126,131 +124,295 @@
             backdrop-filter: blur(8px);
             padding: 40px;
             border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
-        .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+        h2 {
             color: #6e4d31;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .card p {
-            font-weight: 300;
-            opacity: 0.9;
+        img {
+            width: 100%;
+            max-width: 340px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            border-left: 3px dashed #d6c0a5;
+            padding-left: 25px;
+            margin: 20px 0;
+        }
+
+        .msg-timestamp {
+            font-size: 0.85rem;
+            color: #8b6b4f;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .texto-principal {
+            font-size: 1.1rem;
+            color: #5c4a38;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        /* Estilo dos Versículos Bíblicos */
+        .versiculo-box {
+            border-left: 4px solid #8b6b4f;
+            background: rgba(139, 107, 79, 0.05);
+            padding: 20px;
+            border-radius: 0 20px 20px 0;
+            margin: 20px 0;
+        }
+
+        .versiculo-texto {
+            font-style: italic;
+            color: #6e4d31;
+            font-size: 1.05rem;
+        }
+
+        .versiculo-ref {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #8b6b4f;
+            display: block;
+            margin-top: 5px;
         }
 
         footer {
             text-align: center;
-            padding: 40px 20px;
-            opacity: 0.7;
-            font-size: 0.9rem;
+            padding: 120px 20px;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+        #topo {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: #8b6b4f;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
 
-            .card {
-                padding: 25px;
-            }
+        #topo:hover {
+            background: #6e4d31;
+            transform: translateY(-3px);
+        }
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .card { padding: 25px; }
+            .fade-section { margin-bottom: 50px; }
         }
     </style>
 </head>
 <body>
+
     <div class="bg-gradient"></div>
-    
-    <header>
-        <div class="hero">
-            <button class="btn-revelar" onclick="revelarNome()">Clique para revelar</button>
-            <h1 id="nome">💝 Surpresa Especial 💝</h1>
-            <h2>Algo especial foi preparado para você...</h2>
-            <button class="btn" onclick="avancar()">Continuar</button>
-        </div>
-    </header>
 
-    <div id="site" style="display:none;">
-        <div class="fade-section">
-            <div class="card">
-                <h3>❤️ Para você</h3>
-                <p>Este é um lugar especial, criado com todo o carinho e atenção. Cada detalhe foi pensado em você.</p>
+    <div id="capa">
+        <header>
+            <div class="hero">
+                <h2>Para uma pessoa especial</h2>
+                <h1 id="titulo-nome">Meu Bem ❤️</h1>
+                <button class="btn-revelar" onclick="alternarNome()">✨ Revelar nome secreto</button>
+                <p style="margin-bottom: 10px;">Uma pequena história sobre fé, sonhos, momentos e lembranças.</p>
+                <p id="contador" style="font-weight: 600; color: #8b6b4f;"></p>
+                <button class="btn" onclick="iniciar()">✨ Dar Play na Nossa História</button>
             </div>
-        </div>
+        </header>
+    </div>
 
-        <div class="fade-section">
+    <div id="site" style="display: none;">
+        
+        <section class="fade-section">
             <div class="card">
-                <h3>✨ Um presente especial</h3>
-                <p>Você merece ser feliz, ser amado e ser valorizado todos os dias. Essa página existe para lembrá-lo disso.</p>
+                <h2>👤 Quem Sou Eu</h2>
+                <img src="Lucas.jpg" alt="Lucas">
+                <p><strong>Nome:</strong> Lucas Vinicius</p>
+                <p>Sou um jovem que busca crescer através da fé, dos estudos e dos sonhos que Deus colocou em meu coração.</p>
+                <hr style="margin: 25px 0; border: 0; border-top: 1px dashed #d6c0a5;">
+                <h2>🙏 Minha Fé</h2>
+                <p>Minha fé é a base de tudo. Ela me lembra diariamente que Deus tem um propósito desenhado para cada etapa da nossa caminhada e cuida de cada detalhe.</p>
             </div>
-        </div>
+        </section>
 
-        <div class="fade-section">
+        <section class="fade-section">
             <div class="card">
-                <h3>💌 Mensagem do Coração</h3>
-                <p>Você é incrível. Obrigado por ser quem você é. Obrigado por estar aqui. Você faz toda a diferença na minha vida.</p>
+                <h2>🎯 Meus Objetivos</h2>
+                <p>
+                    • Trabalhar com TI<br>
+                    • Terminar minha faculdade<br>
+                    • Comprar minha casa<br>
+                    • Construir minha família
+                </p>
             </div>
-        </div>
+        </section>
 
-        <footer>
-            <p>Feito com 💖 para alguém especial</p>
+        <section class="fade-section">
+            <div class="card">
+                <h2>📖 Fundamento no Amor</h2>
+                <div class="versiculo-box">
+                    <p class="versiculo-texto">"Acima de tudo, porém, revistam-se do amor, que é o elo perfeito."</p>
+                    <span class="versiculo-ref">Colossenses 3:14</span>
+                </div>
+                <p>Construir planos e objetivos só faz sentido quando plantamos nossas bases naquilo que vem do Alto.</p>
+            </div>
+        </section>
+
+        <section class="fade-section">
+            <div class="card">
+                <h2>🌱 Como Tudo Começou</h2>
+                <div class="timeline">
+                    <span class="msg-timestamp">📅 07 de Maio às 06:42 da manhã</span>
+                    <p class="texto-principal">
+                        Você é uma pessoa maravilhosa, inteligente, cheia de planos para o futuro e sempre tenta estar mais próxima de Deus, e para mim, é isso que te deixa ainda mais linda.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-section">
+            <div class="card">
+                <h2>🕊️ O Cuidado nas Palavras</h2>
+                <div class="versiculo-box">
+                    <p class="versiculo-texto">"O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Não maltrata, não procura seus interesses, não se ira facilmente, não guarda rancor."</p>
+                    <span class="versiculo-ref">1 Coríntios 13:4-5</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-section">
+            <div class="card">
+                <h2>📸 Congresso CIBEMP</h2>
+                <img src="foto-especial.jpg" alt="Congresso">
+                <div style="margin-top: 20px;">
+                    <span class="msg-timestamp">📅 19/05 às 23:03</span>
+                    <p class="texto-principal">
+                        Saiba que, a cada oração, o seu nome está lá.<br><br>
+                        Você é uma pessoa tão especial pra mim. Em minhas orações eu pedia direção, perguntava a Deus se era você, e depois que nós nos conhecemos naquele primeiro congresso foi uma loucura.<br><br>
+                        A cada toque, a cada conversa, eu não sabia o que falar, meu coração batia mais forte. Não era ansiedade e nem medo. Eu nem sei explicar o que era, mas senti uma paz tão grande quando você ficou do meu lado. Hoje eu penso que deveria ter tirado algumas fotos com você naquele dia, e o tolo fui eu de não ter tirado.<br><br>
+                        Falar da aparência é fácil, por isso prefiro falar do que você demonstra ser. Você parece ser uma pessoa respeitosa, bondosa, guerreira e paciente. E, no caso da paciência, vai precisar bastante pra me aturar kkkkk.<br><br>
+                        Mas, acima de tudo, o que mais me chamou atenção foi o Espírito Santo em você. A cada olhar, a cada fala, eu me perdia "de uma forma boa, quando eu falei que fiquei nervoso não foi a toa". Se eu fosse descrever tudo isso em uma só palavra, acho que seria amor… ou paixão kkkk.<br><br>
+                        Estamos nos conhecendo aos poucos e, com toda certeza, eu vou parecer um doidão falando tudo isso. Mas espero de verdade que possamos construir uma história juntos, tendo Deus no centro de tudo.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-section">
+            <div class="card">
+                <h2>🤝 Caminhando em Parceria</h2>
+                <div class="versiculo-box">
+                    <p class="versiculo-texto">"É melhor serem dois do que um, porque têm melhor paga do seu trabalho. Porque se um cair, o outro levanta o seu companheiro..."</p>
+                    <span class="versiculo-ref">Eclesiastes 4:9-10</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-section">
+            <div class="card">
+                <h2>❤️ Para o Meu Bem</h2>
+                <span class="msg-timestamp">📅 24/05 às 23:31</span>
+                <p class="texto-principal">
+                    Você quer construir uma história comigo? Claro, vamos continuar nos conhecendo mais. Eu quero conhecer mais sobre você, saber dos seus medos, do que te deixa feliz, dos seus planos pro futuro. Quero saber como foi o seu dia, o que você gosta de fazer, o que gosta de comer, assistir… essas coisas simples, sabe? E também quero que você conheça mais sobre mim. E pelo que você me falou, sua mãe também quer me conhecer kkkkk.<br><br>
+                    Eu quero buscar a Deus junto com você. Parece até uma declaração de namoro falando assim kkkkk, mas isso é conversa pra outro momento.<br><br>
+                    <strong>Meu Testemunho:</strong><br>
+                    Um dia, nas férias, eu fiz uma bagunça em casa, tomei uma bronca da minha mãe, fiquei muito bravo e saí de casa falando: "Já que você não me quer como filho, então que assim seja, que eu morra hoje". Pesado, né?<br><br>
+                    Depois disso, fui andar de bicicleta com um amigo. Pra piorar, a gente resolveu apostar corrida numa descida… e você já deve imaginar o que aconteceu kkkkk. Eu apertei o freio da frente, ele estourou, entrou na roda e eu capotei. Cena de Velozes e Furiosos kkkkk. Hoje eu dou risada, mas na época foi sério.<br><br>
+                    Eu bati a cabeça na guia, quebrei a cabeça e perdi a consciência. Do lado tinha uma igreja, e os irmãos me socorreram e chamaram a ambulância. Esse meu "amigo" falou que ia chamar minha família, mas ele simplesmente fugiu.<br><br>
+                    Eu não lembro de muita coisa, só de algumas visões. Mas uma coisa eu lembro com certeza: eu segurei na mão de alguém, e essa pessoa brilhava. Eu só falava: "não me deixa morrer".<br><br>
+                    Eu passei pelo vale da morte. A verdade é que eu morri e voltou. Minha mãe e meu pai ouviram médicos falando que eu não ia sobrevivir, e que, se sobrevivesse, teria sequelas pro resto da vida. Só que olha eu aqui hoje. Eu não tenho nenhum problema, minha saúde está renovada.<br><br>
+                    Até hoje eu não sei explicar se aquilo que eu vi foi uma alucinação pela perda de sangue e pelo impacto… ou se foi Deus me livrando da morte.<br><br>
+                    Depois disso, meus pais fizeram pedidos de oração e eu fui pra Sede. Se algum dia você conversar com eles sobre isso, vai ver como essa história é complicada.<br><br>
+                    Mas esse foi o começo da minha caminhada. Depois comecei a ouvir outros testemunhos parecidos, de pessoas que também passaram por experiências assim. E então, num domingo, eu fiz a melhor escolha da minha vida: entreguei minha vida pra Jesus.<br><br>
+                    Depois disso tudo… eu estou aqui. Complicada essa história, né? E olha que eu contei só uma kkkkk. Quem sabe um dia eu te conto mais.
+                </p>
+            </div>
+        </section>
+
+        <footer class="fade-section">
+            <h2 style="justify-content: center;">✨ Nossa Jornada</h2>
+            <p class="texto-principal" style="text-align: center; margin-bottom: 30px;">
+                Cada detalhe que passamos até aqui, desde o nervosismo daquele congresso até as conversas mais profundas, me mostra que vale a pena sonhar. Que Deus continue guiando os nossos passos, abençoando nossos dias e escrevendo cada capítulo dessa história que está apenas começando. Obrigado por ser essa pessoa tão especial.
+            </p>
+            <div class="versiculo-box" style="border: none; background: rgba(110, 77, 49, 0.1); border-radius: 20px; padding: 25px;">
+                <p style="font-size: 1.2rem; font-style: italic; color: #6e4d31;">"Agora permanecem a fé, a esperança e o amor. Mas o maior destes é o amor."</p>
+                <p style="font-weight: 600; margin-top: 5px;">1 Coríntios 13:13</p>
+            </div>
         </footer>
     </div>
 
+    <button id="topo" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao início">↑</button>
+
     <script>
-        let nomeRevelado = false;
-        const nomes = ['💝 Surpresa Especial 💝', 'Meu Bem ❤️'];
-        let indiceNome = 0;
-
-        function revelarNome() {
-            const nomeElement = document.getElementById('nome');
-            indiceNome = (indiceNome + 1) % nomes.length;
-            
-            nomeElement.classList.add('trocando');
+        function iniciar() {
+            const capa = document.getElementById("capa");
+            capa.style.opacity = "0";
+            capa.style.transform = "translateY(-20px)";
             
             setTimeout(() => {
-                nomeElement.textContent = nomes[indiceNome];
-                nomeElement.classList.remove('trocando');
-            }, 400);
-
-            nomeRevelado = true;
+                capa.style.display = "none";
+                const site = document.getElementById("site");
+                site.style.display = "block";
+                document.getElementById("topo").style.display = "block";
+                checarScroll();
+            }, 600);
         }
 
-        function avancar() {
-            const header = document.querySelector('header');
-            const site = document.getElementById('site');
-            
-            header.style.opacity = '0';
-            header.style.transform = 'translateY(-50px)';
+        function alternarNome() {
+            const titulo = document.getElementById("titulo-nome");
+            titulo.classList.add("trocando");
             
             setTimeout(() => {
-                header.style.display = 'none';
-                site.style.display = 'block';
-                
-                setTimeout(() => {
-                    const sections = document.querySelectorAll('.fade-section');
-                    sections.forEach((section, index) => {
-                        setTimeout(() => {
-                            section.classList.add('visible');
-                        }, index * 300);
-                    });
-                }, 100);
+                if (titulo.innerHTML === "Meu Bem ❤️") {
+                    titulo.innerHTML = "Laryssa ❤️";
+                } else {
+                    titulo.innerHTML = "Meu Bem ❤️";
+                }
+                titulo.classList.remove("trocando");
             }, 400);
         }
 
-        // Scroll reveal
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Contador de dias automático ajustado para 19 de Abril de 2026
+        const inicio = new Date("2026-04-19");
+        const hoje = new Date();
+        const dias = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
+        document.getElementById("contador").innerHTML = "Já se passaram " + dias + " dias desde o início desta história.";
+
+        const secoes = document.querySelectorAll('.fade-section');
+        
+        const checarScroll = () => {
+            const arranjoAtivacao = window.innerHeight * 0.85;
+            secoes.forEach(secao => {
+                const topoSecao = secao.getBoundingClientRect().top;
+                if (topoSecao < arranjoAtivacao) {
+                    secao.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        };
 
-        document.querySelectorAll('.fade-section').forEach(section => {
-            observer.observe(section);
-        });
+        window.addEventListener('scroll', checarScroll);
     </script>
 </body>
 </html>
