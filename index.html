@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Bem ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #faf7f2;
+            color: #4b3b2b;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #faf7f2, #ebe2d3);
+            z-index: -1;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .hero {
+            max-width: 900px;
+        }
+
+        /* Animação do Nome */
+        .hero h1 {
+            font-size: 4rem;
+            color: #6e4d31;
+            margin-bottom: 10px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .hero h1.trocando {
+            opacity: 0;
+            transform: scale(0.9) translateY(10px);
+        }
+
+        .hero h2 {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: #8b6b4f;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 15px rgba(139, 107, 79, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 107, 79, 0.5);
+        }
+
+        /* Botão sutil para revelar o nome */
+        .btn-revelar {
+            background: transparent;
+            color: #8b6b4f;
+            border: 1px dashed #8b6b4f;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-revelar:hover {
+            background: rgba(139, 107, 79, 0.1);
+        }
+
+        #site {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .fade-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+            margin-bottom: 80px;
+            padding: 20px 0;
+        }
+
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #6e4d31;
+        }
+
+        .card p {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <header>
+        <div class="hero">
+            <button class="btn-revelar" onclick="revelarNome()">Clique para revelar</button>
+            <h1 id="nome">💝 Surpresa Especial 💝</h1>
+            <h2>Algo especial foi preparado para você...</h2>
+            <button class="btn" onclick="avancar()">Continuar</button>
+        </div>
+    </header>
+
+    <div id="site" style="display:none;">
+        <div class="fade-section">
+            <div class="card">
+                <h3>❤️ Para você</h3>
+                <p>Este é um lugar especial, criado com todo o carinho e atenção. Cada detalhe foi pensado em você.</p>
+            </div>
+        </div>
+
+        <div class="fade-section">
+            <div class="card">
+                <h3>✨ Um presente especial</h3>
+                <p>Você merece ser feliz, ser amado e ser valorizado todos os dias. Essa página existe para lembrá-lo disso.</p>
+            </div>
+        </div>
+
+        <div class="fade-section">
+            <div class="card">
+                <h3>💌 Mensagem do Coração</h3>
+                <p>Você é incrível. Obrigado por ser quem você é. Obrigado por estar aqui. Você faz toda a diferença na minha vida.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Feito com 💖 para alguém especial</p>
+        </footer>
+    </div>
+
+    <script>
+        let nomeRevelado = false;
+        const nomes = ['💝 Surpresa Especial 💝', 'Meu Bem ❤️'];
+        let indiceNome = 0;
+
+        function revelarNome() {
+            const nomeElement = document.getElementById('nome');
+            indiceNome = (indiceNome + 1) % nomes.length;
+            
+            nomeElement.classList.add('trocando');
+            
+            setTimeout(() => {
+                nomeElement.textContent = nomes[indiceNome];
+                nomeElement.classList.remove('trocando');
+            }, 400);
+
+            nomeRevelado = true;
+        }
+
+        function avancar() {
+            const header = document.querySelector('header');
+            const site = document.getElementById('site');
+            
+            header.style.opacity = '0';
+            header.style.transform = 'translateY(-50px)';
+            
+            setTimeout(() => {
+                header.style.display = 'none';
+                site.style.display = 'block';
+                
+                setTimeout(() => {
+                    const sections = document.querySelectorAll('.fade-section');
+                    sections.forEach((section, index) => {
+                        setTimeout(() => {
+                            section.classList.add('visible');
+                        }, index * 300);
+                    });
+                }, 100);
+            }, 400);
+        }
+
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
